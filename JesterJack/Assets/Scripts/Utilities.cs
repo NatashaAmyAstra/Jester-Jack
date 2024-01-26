@@ -7,11 +7,13 @@ public class Utilities : MonoBehaviour
 {
     public void GoToGame()
     {
-        SceneManager.LoadScene("esmee");
+        //SceneManager.LoadScene("esmee");
+        Debug.Log("yoyo");
     }
 
     public void QuitGame()
     {
-        Application.Quit();
+        //Application.Quit();
+        Debug.Log("gutenmorgen");
     }
 }
