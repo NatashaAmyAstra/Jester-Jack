@@ -52,8 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Flip()
     {
-        spriteRenderer.flipX = facingRight;
-
+        animator.SetBool("Facing right", facingRight);
         facingRight = !facingRight;
     }
 
