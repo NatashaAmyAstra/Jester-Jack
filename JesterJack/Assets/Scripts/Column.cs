@@ -9,7 +9,10 @@ public class Column : MonoBehaviour
         opened_empty,
         closed_empty,
     }
+
     [SerializeField] private columnStates columnState = columnStates.closed_full;
+    [SerializeField] private JackInABoxComponents givenComponent;
+    [SerializeField][Range(0, 5)] private int givenColor;
 
     [SerializeField] private float loweredHeight;
     [SerializeField] private float raisedHeight;
@@ -18,7 +21,7 @@ public class Column : MonoBehaviour
 
     private Coroutine activeCoroutine = null;
 
-    public void Interact() {
+    public void Interact(Transform jackInABox) {
         if(activeCoroutine != null)
             return;
 
@@ -28,7 +31,7 @@ public class Column : MonoBehaviour
                 activeCoroutine = StartCoroutine(ChangeHeight(raisedHeight));
                 break;
             case columnStates.opened_full:
-                GrabContent();
+                GrabContent(jackInABox);
                 break;
             case columnStates.opened_empty:
                 activeCoroutine = StartCoroutine(ChangeHeight(loweredHeight));
@@ -53,8 +56,17 @@ public class Column : MonoBehaviour
         activeCoroutine = null;
     }
 
-    private void GrabContent() {
-        
+    private void GrabContent(Transform jackHolder) {
+        foreach(Transform child in jackHolder)
+        {
+            JackInABox jackInABox = child.GetComponent<JackInABox>();
+            if(jackInABox.GetBoxComponent() == givenComponent)
+            {
+                Debug.Log("same component");
+                jackInABox.SetComponent(givenColor);
+                break;
+            }
+        }
 
         columnState = (columnStates)((int)columnState + 1);
     }

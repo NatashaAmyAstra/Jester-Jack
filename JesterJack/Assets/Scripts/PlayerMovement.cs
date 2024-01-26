@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
 
-    Rigidbody parentRB;
+    private Rigidbody parentRB;
+    private SpriteRenderer spriteRenderer;
 
     private Animator animator;
     bool facingRight = true;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         parentRB = transform.parent.GetComponent<Rigidbody>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -30,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (positionOffset  == Vector3.zero)
+        if (positionOffset == Vector3.zero)
         {
             animator.SetBool("Walking", false);
         }
@@ -40,11 +42,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (positionOffset.x < 0 && !facingRight)
+        if ((positionOffset.x + positionOffset.z < 0) && !facingRight)
         {
             Flip();
         }
-        else if (positionOffset.x > 0 && facingRight)
+        else if ((positionOffset.x + positionOffset.z > 0) && facingRight)
         {
             Flip();
         }
@@ -52,9 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Flip()
     {
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.x *= -1;
-        gameObject.transform.localScale = currentScale;
+        spriteRenderer.flipX = facingRight;
 
         facingRight = !facingRight;
     }

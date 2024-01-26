@@ -7,19 +7,23 @@ public class Interactor : MonoBehaviour
     [SerializeField] private Transform _interactionPoint;
     [SerializeField] private float _interactionpointRadius = 0.5f;
     [SerializeField] private LayerMask _interactableMask;
+    [SerializeField] private Transform jackInABox;
 
     private readonly Collider[] _colliders = new Collider[3];
-    [SerializeField] private Collider _numFound;
 
 
-    private void Update()
+    private void Update()   
     {
-        _numFound = Physics.OverlapSphere(_interactionPoint.position, _interactionpointRadius)[0];
-        Column interactable = _numFound.GetComponent<Column>();
+        Collider[] objectsAtPoint = Physics.OverlapSphere(_interactionPoint.position, _interactionpointRadius);
+        if(objectsAtPoint.Length == 0)
+            return;
+
+        Collider objectAtPoint = objectsAtPoint[0];
+        Column interactable = objectAtPoint.GetComponent<Column>();
         if(interactable != null)
         {
             if(Input.GetKeyDown(KeyCode.E)) {
-                interactable.Interact();
+                interactable.Interact(jackInABox);
             }
         }
     }
