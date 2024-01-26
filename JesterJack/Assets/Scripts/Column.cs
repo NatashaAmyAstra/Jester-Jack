@@ -3,7 +3,13 @@ using UnityEngine;
 
 public class Column : MonoBehaviour
 {
-    [SerializeField] private bool raised = false;
+    private enum columnStates {
+        closed_full = 0,
+        opened_full,
+        opened_empty,
+        closed_empty,
+    }
+    [SerializeField] private columnStates columnState = columnStates.closed_full;
 
     [SerializeField] private float loweredHeight;
     [SerializeField] private float raisedHeight;
@@ -12,18 +18,29 @@ public class Column : MonoBehaviour
 
     private Coroutine activeCoroutine = null;
 
+    private void OnMouseDown() {
+        Interact();
+    }
+
     public void Interact() {
         if(activeCoroutine != null)
             return;
 
-        if(raised == false)
-            activeCoroutine = StartCoroutine(ChangeHeight(raisedHeight));
-        else if(raised == true)
-            activeCoroutine = StartCoroutine(ChangeHeight(loweredHeight));
+        switch(columnState)
+        {
+            case columnStates.closed_full:
+                activeCoroutine = StartCoroutine(ChangeHeight(raisedHeight));
+                break;
+            case columnStates.opened_full:
+                GrabContent();
+                break;
+            case columnStates.opened_empty:
+                activeCoroutine = StartCoroutine(ChangeHeight(loweredHeight));
+                break;
+        }
     }
 
     private IEnumerator ChangeHeight(float height) {
-        Debug.Log("HI");
         Vector3 startPosition = transform.position;
         Vector3 endPosition = new Vector3(transform.position.x, height, transform.position.z);
         float t = 0;
@@ -36,7 +53,13 @@ public class Column : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
 
-        raised = !raised;
+        columnState = (columnStates)((int)columnState + 1);
         activeCoroutine = null;
+    }
+
+    private void GrabContent() {
+        
+
+        columnState = (columnStates)((int)columnState + 1);
     }
 }
