@@ -24,13 +24,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 positionOffset = new Vector3(0, 0, 0);
         Quaternion rotationOffset = Quaternion.Euler(0, 0, Time.deltaTime);
 
-        positionOffset.x = Input.GetAxisRaw("Horizontal") * -speed * Time.deltaTime;
-           
-        positionOffset.z = Input.GetAxisRaw("Vertical") * -speed * Time.deltaTime;
+        positionOffset.x = Input.GetAxisRaw("Horizontal") * -1;   
+        positionOffset.z = Input.GetAxisRaw("Vertical") * -1;
+        positionOffset.Normalize();
 
-        parentRB.AddForce(positionOffset * speed);
-
-
+        parentRB.AddForce(positionOffset  * speed);
 
         if (positionOffset == Vector3.zero)
         {

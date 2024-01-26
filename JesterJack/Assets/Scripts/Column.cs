@@ -13,13 +13,46 @@ public class Column : MonoBehaviour
     [SerializeField] private columnStates columnState = columnStates.closed_full;
     [SerializeField] private JackInABoxComponents givenComponent;
     [SerializeField][Range(0, 5)] private int givenColor;
+    [SerializeField] private Sprite[] sprites;
+    private SpriteRenderer spriteDisplay;
 
     [SerializeField] private float loweredHeight;
     [SerializeField] private float raisedHeight;
 
+    [SerializeField] private Renderer columnRenderer;
+    [SerializeField] private Material columnDefaultMaterial;
+    [SerializeField] private Material columnHighlightMaterial;
+
     [SerializeField] private float raiseSpeedSeconds;
 
     private Coroutine activeCoroutine = null;
+    [SerializeField] private float highlightTimeSeconds;
+    private float highlightTimer;
+
+    private void Awake() {
+        columnRenderer.material = columnDefaultMaterial;
+        spriteDisplay = GetComponentInChildren<SpriteRenderer>();
+        spriteDisplay.sprite = sprites[givenColor];
+    }
+
+    private void Update() {
+        if(highlightTimer > 0)
+        {
+            highlightTimer -= Time.deltaTime;
+            if(highlightTimer < 0)
+            {
+                columnRenderer.material = columnDefaultMaterial;
+            }
+        }
+    }
+
+    public void Highlight() {
+        if(columnState == columnStates.closed_empty)
+            return;
+
+        columnRenderer.material = columnHighlightMaterial;
+        highlightTimer = highlightTimeSeconds;
+    }
 
     public void Interact(Transform jackInABox) {
         if(activeCoroutine != null)
@@ -28,12 +61,16 @@ public class Column : MonoBehaviour
         switch(columnState)
         {
             case columnStates.closed_full:
+                NextState();
                 activeCoroutine = StartCoroutine(ChangeHeight(raisedHeight));
                 break;
             case columnStates.opened_full:
+                NextState();
                 GrabContent(jackInABox);
+                spriteDisplay.sprite = null;
                 break;
             case columnStates.opened_empty:
+                NextState();
                 activeCoroutine = StartCoroutine(ChangeHeight(loweredHeight));
                 break;
         }
@@ -52,7 +89,6 @@ public class Column : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
 
-        columnState = (columnStates)((int)columnState + 1);
         activeCoroutine = null;
     }
 
@@ -62,12 +98,13 @@ public class Column : MonoBehaviour
             JackInABox jackInABox = child.GetComponent<JackInABox>();
             if(jackInABox.GetBoxComponent() == givenComponent)
             {
-                Debug.Log("same component");
                 jackInABox.SetComponent(givenColor);
                 break;
             }
         }
+    }
 
+    private void NextState() {
         columnState = (columnStates)((int)columnState + 1);
     }
 }

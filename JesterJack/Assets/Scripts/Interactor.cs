@@ -22,6 +22,7 @@ public class Interactor : MonoBehaviour
         Column interactable = objectAtPoint.GetComponent<Column>();
         if(interactable != null)
         {
+            interactable.Highlight();
             if(Input.GetKeyDown(KeyCode.E)) {
                 interactable.Interact(jackInABox);
             }

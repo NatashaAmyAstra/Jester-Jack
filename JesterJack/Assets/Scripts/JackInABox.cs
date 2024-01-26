@@ -20,6 +20,8 @@ public class JackInABox : MonoBehaviour
 
         if(startSprite > 0)
             spriteRenderer.sprite = sprites[startSprite];
+        else
+            spriteRenderer.sprite = null;
     }
 
     public JackInABoxComponents GetBoxComponent() {
