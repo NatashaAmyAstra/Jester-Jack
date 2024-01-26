@@ -5,14 +5,16 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private float XMoveRotation;
-    [SerializeField] private float YMoveRotation;
+
+    Rigidbody parentRB;
+
     private Animator animator;
     bool facingRight = true;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        parentRB = transform.parent.GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -20,11 +22,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 positionOffset = new Vector3(0, 0, 0);
         Quaternion rotationOffset = Quaternion.Euler(0, 0, Time.deltaTime);
 
-        positionOffset.x = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+        positionOffset.x = Input.GetAxisRaw("Horizontal") * -speed * Time.deltaTime;
            
-        positionOffset.z = Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
+        positionOffset.z = Input.GetAxisRaw("Vertical") * -speed * Time.deltaTime;
 
-        transform.position += positionOffset;
+        parentRB.AddForce(positionOffset * speed);
 
 
 
@@ -38,11 +40,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (positionOffset.x < 0 && facingRight)
+        if (positionOffset.x < 0 && !facingRight)
         {
             Flip();
         }
-        else if (positionOffset.x > 0 && !facingRight)
+        else if (positionOffset.x > 0 && facingRight)
         {
             Flip();
         }
