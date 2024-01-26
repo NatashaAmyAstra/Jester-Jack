@@ -18,10 +18,6 @@ public class Column : MonoBehaviour
 
     private Coroutine activeCoroutine = null;
 
-    private void OnMouseDown() {
-        Interact();
-    }
-
     public void Interact() {
         if(activeCoroutine != null)
             return;
