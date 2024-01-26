@@ -16,6 +16,9 @@ public class Column : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     private SpriteRenderer spriteDisplay;
 
+    [SerializeField] private float spriteFadeInSeconds;
+    private float opacityPerStep;
+
     [SerializeField] private float loweredHeight;
     [SerializeField] private float raisedHeight;
 
@@ -33,6 +36,9 @@ public class Column : MonoBehaviour
         columnRenderer.material = columnDefaultMaterial;
         spriteDisplay = GetComponentInChildren<SpriteRenderer>();
         spriteDisplay.sprite = sprites[givenColor];
+
+        opacityPerStep = 1 / (spriteFadeInSeconds * 50);
+        Debug.Log(opacityPerStep);
     }
 
     private void Update() {
@@ -86,6 +92,15 @@ public class Column : MonoBehaviour
             transform.position = Vector3.Lerp(startPosition, endPosition, t);
 
             t += 1 / (50 * raiseSpeedSeconds);
+            yield return new WaitForSeconds(0.02f);
+        }
+
+        float opacity = 0;
+        while(opacity < 1)
+        {
+            opacity += opacityPerStep;
+            Debug.Log(opacity);
+            spriteDisplay.color = new Color(1, 1, 1, opacity);
             yield return new WaitForSeconds(0.02f);
         }
 

@@ -136,6 +136,7 @@ MonoBehaviour:
   givenComponent: 0
   givenColor: 0
   sprites: []
+  spriteFadeInSeconds: 0.5
   loweredHeight: 0
   raisedHeight: 2.243429
   columnRenderer: {fileID: 4999840152282747320}
