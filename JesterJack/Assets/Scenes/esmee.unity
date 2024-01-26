@@ -1021,6 +1021,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7622672403523471637, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
   m_PrefabInstance: {fileID: 1056057990}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1086338816 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7146247990327585435, guid: f4d9545e73e06df47b2ccd70c87be59f, type: 3}
+  m_PrefabInstance: {fileID: 7419483658838473862}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1238975946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1435,6 +1440,7 @@ GameObject:
   - component: {fileID: 1737335177}
   - component: {fileID: 1737335175}
   - component: {fileID: 1737335174}
+  - component: {fileID: 1737335178}
   m_Layer: 0
   m_Name: king
   m_TagString: Untagged
@@ -1542,6 +1548,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5915a169b584dc4478abdf7847edf0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1737335178
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737335173}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.12, y: 5.938284, z: 2.8866215}
+  m_Center: {x: 0, y: -2.9089499, z: -0.28802967}
 --- !u!1001 &1754543984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1879,6 +1906,30 @@ PrefabInstance:
     - target: {fileID: 62633792357991720, guid: f4d9545e73e06df47b2ccd70c87be59f, type: 3}
       propertyPath: m_Name
       value: playerContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325186685550365393, guid: f4d9545e73e06df47b2ccd70c87be59f, type: 3}
+      propertyPath: startSprite
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4842003406006734605, guid: f4d9545e73e06df47b2ccd70c87be59f, type: 3}
+      propertyPath: jackInABox
+      value: 
+      objectReference: {fileID: 1086338816}
+    - target: {fileID: 5640921619700235765, guid: f4d9545e73e06df47b2ccd70c87be59f, type: 3}
+      propertyPath: component
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640921619700235765, guid: f4d9545e73e06df47b2ccd70c87be59f, type: 3}
+      propertyPath: startSprite
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407301102019659189, guid: f4d9545e73e06df47b2ccd70c87be59f, type: 3}
+      propertyPath: component
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407301102019659189, guid: f4d9545e73e06df47b2ccd70c87be59f, type: 3}
+      propertyPath: startSprite
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7830715094592621884, guid: f4d9545e73e06df47b2ccd70c87be59f, type: 3}
       propertyPath: m_LocalPosition.x

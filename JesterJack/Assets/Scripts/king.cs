@@ -17,6 +17,13 @@ public class king : MonoBehaviour
         {
             animator.SetBool("Laughing", false);
         }
-       else animator.SetBool("Laughing", true);
+        else animator.SetBool("Laughing", true);
+
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            animator.SetBool("Crying", false);
+        }
+        else animator.SetBool("Crying", true);
     }
 }
