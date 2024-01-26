@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float XMoveRotation;
     [SerializeField] private float YMoveRotation;
     private Animator animator;
+    bool facingRight = true;
 
     void Start()
     {
@@ -34,7 +35,26 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("Walking", true);
-        } 
+        }
+
+
+        if (positionOffset.x < 0 && facingRight)
+        {
+            Flip();
+        }
+        else if (positionOffset.x > 0 && !facingRight)
+        {
+            Flip();
+        }
+    }
+
+    void Flip()
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+
+        facingRight = !facingRight;
     }
 
 }
