@@ -1,17 +1,21 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Column : MonoBehaviour
 {
-    private enum columnStates {
+    public enum ColumnStates {
         closed_full = 0,
         opened_full,
         opened_empty,
         closed_empty,
     }
 
-    [SerializeField] private columnStates columnState = columnStates.closed_full;
+    [SerializeField] private ColumnStates columnState = ColumnStates.closed_full;
     [SerializeField] private JackInABoxComponents givenComponent;
+    private List<Column> columnsWithSameComponent = new List<Column>();
+
     [SerializeField][Range(0, 5)] private int givenColor;
     [SerializeField] private Sprite[] sprites;
     private SpriteRenderer spriteDisplay;
@@ -19,14 +23,14 @@ public class Column : MonoBehaviour
     [SerializeField] private float spriteFadeInSeconds;
     private float opacityPerStep;
 
-    [SerializeField] private float loweredHeight;
-    [SerializeField] private float raisedHeight;
-
     [SerializeField] private Renderer columnRenderer;
     [SerializeField] private Material columnDefaultMaterial;
     [SerializeField] private Material columnHighlightMaterial;
 
     [SerializeField] private float raiseSpeedSeconds;
+
+    [SerializeField] private float loweredHeight;
+    [SerializeField] private float raisedHeight;
 
     private Coroutine activeCoroutine = null;
     [SerializeField] private float highlightTimeSeconds;
@@ -38,7 +42,19 @@ public class Column : MonoBehaviour
         spriteDisplay.sprite = sprites[givenColor];
 
         opacityPerStep = 1 / (spriteFadeInSeconds * 50);
-        Debug.Log(opacityPerStep);
+    }
+
+    private void Start() {
+        Column[] Columns = FindObjectsOfType<Column>();
+        foreach(Column column in Columns)
+        {
+            if(givenComponent == column.GetGivenComponent())
+                columnsWithSameComponent.Add(column);
+        }
+    }
+
+    public JackInABoxComponents GetGivenComponent() {
+        return givenComponent;
     }
 
     private void Update() {
@@ -53,7 +69,7 @@ public class Column : MonoBehaviour
     }
 
     public void Highlight() {
-        if(columnState == columnStates.closed_empty)
+        if(columnState == ColumnStates.closed_empty)
             return;
 
         columnRenderer.material = columnHighlightMaterial;
@@ -66,16 +82,17 @@ public class Column : MonoBehaviour
 
         switch(columnState)
         {
-            case columnStates.closed_full:
+            case ColumnStates.closed_full:
                 NextState();
+                DisableRow();
                 activeCoroutine = StartCoroutine(ChangeHeight(raisedHeight));
                 break;
-            case columnStates.opened_full:
+            case ColumnStates.opened_full:
                 NextState();
                 GrabContent(jackInABox);
-                spriteDisplay.sprite = null;
+                spriteDisplay.color = new Color(1, 1, 1, 0);
                 break;
-            case columnStates.opened_empty:
+            case ColumnStates.opened_empty:
                 NextState();
                 activeCoroutine = StartCoroutine(ChangeHeight(loweredHeight));
                 break;
@@ -99,7 +116,6 @@ public class Column : MonoBehaviour
         while(opacity < 1)
         {
             opacity += opacityPerStep;
-            Debug.Log(opacity);
             spriteDisplay.color = new Color(1, 1, 1, opacity);
             yield return new WaitForSeconds(0.02f);
         }
@@ -107,9 +123,26 @@ public class Column : MonoBehaviour
         activeCoroutine = null;
     }
 
+    private void DisableRow() {
+        foreach(Column column in columnsWithSameComponent)
+        {
+            if(column.gameObject == gameObject)
+                continue;
+
+            column.SetColumnState(ColumnStates.closed_empty);
+        }
+    }
+
+    public void SetColumnState(ColumnStates state) {
+        columnState = state;
+    }
+
     private void GrabContent(Transform jackHolder) {
         foreach(Transform child in jackHolder)
         {
+            if(child.GetComponent<SpriteRenderer>().sprite != null)
+                continue;
+
             JackInABox jackInABox = child.GetComponent<JackInABox>();
             if(jackInABox.GetBoxComponent() == givenComponent)
             {
@@ -120,6 +153,6 @@ public class Column : MonoBehaviour
     }
 
     private void NextState() {
-        columnState = (columnStates)((int)columnState + 1);
+        columnState = (ColumnStates)((int)columnState + 1);
     }
 }
