@@ -40,20 +40,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if ((positionOffset.x + positionOffset.z < 0) && !facingRight)
+        if (positionOffset.x + positionOffset.z < 0)
         {
-            Flip();
+            facingRight = true;
+            animator.SetBool("Facing right", facingRight);
         }
-        else if ((positionOffset.x + positionOffset.z > 0) && facingRight)
+        else if (positionOffset.x + positionOffset.z > 0)
         {
-            Flip();
+            facingRight = false;
+            animator.SetBool("Facing right", facingRight);
         }
-    }
-
-    void Flip()
-    {
-        animator.SetBool("Facing right", facingRight);
-        facingRight = !facingRight;
+        Debug.Log(positionOffset.x + positionOffset.z);
     }
 
 }
