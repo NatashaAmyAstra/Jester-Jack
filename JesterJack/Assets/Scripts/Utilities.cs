@@ -7,7 +7,7 @@ public class Utilities : MonoBehaviour
 {
     public void GoToGame()
     {
-        SceneManager.LoadScene("esmee");
+        SceneManager.LoadScene("NatashaScene");
     }
 
     public void QuitGame()
