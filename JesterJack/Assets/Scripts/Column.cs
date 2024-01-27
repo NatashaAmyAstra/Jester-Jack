@@ -26,6 +26,7 @@ public class Column : MonoBehaviour
     [SerializeField] private Renderer columnRenderer;
     [SerializeField] private Material columnDefaultMaterial;
     [SerializeField] private Material columnHighlightMaterial;
+    private bool highlightable = true;
 
     [SerializeField] private float raiseSpeedSeconds;
 
@@ -36,6 +37,8 @@ public class Column : MonoBehaviour
     [SerializeField] private float highlightTimeSeconds;
     private float highlightTimer;
 
+    private king king;
+
     private void Awake() {
         columnRenderer.material = columnDefaultMaterial;
         spriteDisplay = GetComponentInChildren<SpriteRenderer>();
@@ -45,6 +48,9 @@ public class Column : MonoBehaviour
     }
 
     private void Start() {
+        king = GameObject.Find("King").GetComponent<king>();
+        king.GetEvent().AddListener(ResetColumns);
+
         Column[] Columns = FindObjectsOfType<Column>();
         foreach(Column column in Columns)
         {
@@ -69,34 +75,38 @@ public class Column : MonoBehaviour
     }
 
     public void Highlight() {
-        if(columnState == ColumnStates.closed_empty)
+        if(columnState == ColumnStates.closed_empty || highlightable == false)
             return;
 
         columnRenderer.material = columnHighlightMaterial;
         highlightTimer = highlightTimeSeconds;
     }
 
-    public void Interact(Transform jackInABox) {
+    public int Interact(Transform jackInABox) {
         if(activeCoroutine != null)
-            return;
+            return -1;
 
+        int returnvalue = -1;
         switch(columnState)
         {
             case ColumnStates.closed_full:
+
                 NextState();
                 DisableRow();
                 activeCoroutine = StartCoroutine(ChangeHeight(raisedHeight));
+                highlightable = false;
                 break;
             case ColumnStates.opened_full:
+                returnvalue = givenColor;
                 NextState();
                 GrabContent(jackInABox);
                 spriteDisplay.color = new Color(1, 1, 1, 0);
-                break;
-            case ColumnStates.opened_empty:
                 NextState();
                 activeCoroutine = StartCoroutine(ChangeHeight(loweredHeight));
                 break;
         }
+
+        return returnvalue;
     }
 
     private IEnumerator ChangeHeight(float height) {
@@ -120,6 +130,7 @@ public class Column : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
 
+        highlightable = true;
         activeCoroutine = null;
     }
 
@@ -154,5 +165,10 @@ public class Column : MonoBehaviour
 
     private void NextState() {
         columnState = (ColumnStates)((int)columnState + 1);
+    }
+
+    private void ResetColumns() {
+        columnState = ColumnStates.closed_full;
+        spriteDisplay.color = new Color(1, 1, 1, 0);
     }
 }

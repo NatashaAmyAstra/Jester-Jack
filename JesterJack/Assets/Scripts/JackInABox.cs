@@ -29,6 +29,13 @@ public class JackInABox : MonoBehaviour
     }
 
     public void SetComponent(int index) {
+        if(index < 0)
+        {
+            spriteRenderer.sprite = null;
+            return;
+        }
+
         spriteRenderer.sprite = sprites[index];
     }
+
 }

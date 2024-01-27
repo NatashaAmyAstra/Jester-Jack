@@ -13,6 +13,7 @@ public class king : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1.0f;
         resetRoundEvent = new UnityEvent();
         animator = GetComponentInChildren<Animator>();
     }
@@ -25,7 +26,6 @@ public class king : MonoBehaviour
         }
         else animator.SetBool("Laughing", true);
 
-
         if (Input.GetKeyDown(KeyCode.G))
         {
             animator.SetBool("Crying", false);
@@ -33,12 +33,30 @@ public class king : MonoBehaviour
         else animator.SetBool("Crying", true);
     }
 
-    public void TurnInToy(int box, int spring, int head) {
+    public bool TurnInToy(int box, int spring, int head) {
+        bool successState;
         if(box == requestedBox && spring == requestedSpring && head == requestedHead)
         {
-            
+            successState = true;
+            animator.SetBool("Laughing", true);
         }
-
+        else
+        {
+            successState = false;
+            animator.SetBool("Crying", true);
+        }
+        Debug.Log(successState);
         resetRoundEvent.Invoke();
+        return successState;
+    }
+
+    public UnityEvent GetEvent() {
+        return resetRoundEvent;
+    }
+
+    public void RequestComponents(int box, int spring, int head) {
+        requestedBox = box;
+        requestedSpring = spring;
+        requestedHead = head;
     }
 }
