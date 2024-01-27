@@ -135,14 +135,15 @@ MonoBehaviour:
   columnState: 0
   givenComponent: 0
   givenColor: 0
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 6d20647dbeeb5e84aa1e3c40839204ea, type: 3}
   spriteFadeInSeconds: 0.5
-  loweredHeight: 0
-  raisedHeight: 2.243429
   columnRenderer: {fileID: 4999840152282747320}
   columnDefaultMaterial: {fileID: 2100000, guid: af8e07495fb3bf443937547e695691e1, type: 2}
   columnHighlightMaterial: {fileID: 2100000, guid: 898212267e572ba4e82ede564245b368, type: 2}
   raiseSpeedSeconds: 1
+  loweredHeight: 0
+  raisedHeight: 2.243429
   highlightTimeSeconds: 0.02
 --- !u!33 &2504794911210723531
 MeshFilter:
