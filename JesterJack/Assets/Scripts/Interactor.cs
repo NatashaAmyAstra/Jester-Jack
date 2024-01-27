@@ -9,8 +9,9 @@ public class Interactor : MonoBehaviour
     [SerializeField] private LayerMask _interactableMask;
     [SerializeField] private Transform jackInABox;
 
-    private readonly Collider[] _colliders = new Collider[3];
-
+    private int acquiredBox;
+    private int acquiredSpring;
+    private int acquiredHead;
 
     private void Update()   
     {
@@ -19,13 +20,19 @@ public class Interactor : MonoBehaviour
             return;
 
         Collider objectAtPoint = objectsAtPoint[0];
-        Column interactable = objectAtPoint.GetComponent<Column>();
-        if(interactable != null)
+        Column column = objectAtPoint.GetComponent<Column>();
+        if(column != null)
         {
-            interactable.Highlight();
+            column.Highlight();
             if(Input.GetKeyDown(KeyCode.E)) {
-                interactable.Interact(jackInABox);
+                column.Interact(jackInABox);
             }
+        }
+
+        king king = objectAtPoint.GetComponent<king>();
+        if(king != null)
+        {
+
         }
     }
 
@@ -33,5 +40,22 @@ public class Interactor : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(_interactionPoint.position, _interactionpointRadius);
+    }
+
+    public void SetAcquiredComponent(JackInABoxComponents component, int color) {
+        switch(component)
+        {
+            case JackInABoxComponents.box:
+                acquiredBox = color;
+                break;
+
+            case JackInABoxComponents.spring:
+                acquiredSpring = color;
+                break;
+
+            case JackInABoxComponents.head:
+                acquiredHead = color;
+                break;
+        }
     }
 }

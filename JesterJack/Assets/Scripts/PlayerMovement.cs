@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
+    private Vector3 positionOffset = Vector3.zero;
 
     private Rigidbody parentRB;
     private SpriteRenderer spriteRenderer;
@@ -21,14 +22,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 positionOffset = new Vector3(0, 0, 0);
+        positionOffset = new Vector3(0, 0, 0);
         Quaternion rotationOffset = Quaternion.Euler(0, 0, Time.deltaTime);
 
         positionOffset.x = Input.GetAxisRaw("Horizontal") * -1;   
         positionOffset.z = Input.GetAxisRaw("Vertical") * -1;
         positionOffset.Normalize();
-
-        parentRB.AddForce(positionOffset  * speed);
 
         if (positionOffset == Vector3.zero)
         {
@@ -50,8 +49,11 @@ public class PlayerMovement : MonoBehaviour
             facingRight = false;
             animator.SetBool("Facing right", facingRight);
         }
-        Debug.Log(positionOffset.x + positionOffset.z);
     }
 
+    private void FixedUpdate() {
+
+        parentRB.AddForce(positionOffset * speed);
+    }
 }
 

@@ -557,6 +557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 755593626}
+  - component: {fileID: 755593627}
   - component: {fileID: 755593625}
   m_Layer: 0
   m_Name: King
@@ -584,7 +585,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6.473725, y: 4.942717, z: 2.6686685}
+  m_Size: {x: 6, y: 5, z: 3}
   m_Center: {x: 0, y: -1.9713585, z: 0}
 --- !u!4 &755593626
 Transform:
@@ -602,6 +603,18 @@ Transform:
   - {fileID: 1475272653}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &755593627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755593624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5915a169b584dc4478abdf7847edf0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &766451708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1722,7 +1735,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1475272653}
-  - component: {fileID: 1475272652}
   - component: {fileID: 1475272651}
   - component: {fileID: 1475272650}
   m_Layer: 0
@@ -1805,18 +1817,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1475272652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475272648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5915a169b584dc4478abdf7847edf0a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1475272653
 Transform:
   m_ObjectHideFlags: 0

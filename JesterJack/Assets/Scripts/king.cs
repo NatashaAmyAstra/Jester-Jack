@@ -1,17 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class king : MonoBehaviour
 {
+    private UnityEvent resetRoundEvent;
+
     private Animator animator;
-    void Start()
+
+    private int requestedBox;
+    private int requestedSpring;
+    private int requestedHead;
+
+    private void Awake()
     {
-        animator = GetComponent<Animator>();
-     
+        resetRoundEvent = new UnityEvent();
+        animator = GetComponentInChildren<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -25,5 +31,14 @@ public class king : MonoBehaviour
             animator.SetBool("Crying", false);
         }
         else animator.SetBool("Crying", true);
+    }
+
+    public void TurnInToy(int box, int spring, int head) {
+        if(box == requestedBox && spring == requestedSpring && head == requestedHead)
+        {
+            
+        }
+
+        resetRoundEvent.Invoke();
     }
 }
