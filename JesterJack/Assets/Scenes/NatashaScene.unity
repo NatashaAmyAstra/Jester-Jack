@@ -206,6 +206,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1106121460}
     m_Modifications:
+    - target: {fileID: 4999840152282747320, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c5605d32a7aaf543affeb82f175521c, type: 2}
     - target: {fileID: 6577985033838494860, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
       propertyPath: givenColor
       value: 4
@@ -1028,7 +1032,7 @@ PrefabInstance:
     - target: {fileID: 4999840152282747320, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: af8e07495fb3bf443937547e695691e1, type: 2}
+      objectReference: {fileID: 2100000, guid: 4c5605d32a7aaf543affeb82f175521c, type: 2}
     - target: {fileID: 6577985033838494860, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
       propertyPath: givenColor
       value: 4
@@ -1586,6 +1590,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1106121460}
     m_Modifications:
+    - target: {fileID: 4999840152282747320, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c5605d32a7aaf543affeb82f175521c, type: 2}
     - target: {fileID: 6577985033838494860, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
       propertyPath: givenColor
       value: 5
@@ -1802,7 +1810,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f56ed7768bec4d94aa437d9f5cfc33a2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c583c74e9bc29594bab5fd0fa5b5a865, type: 2}
+      objectReference: {fileID: 2100000, guid: 49258a3e9b370d74c85c93b51f74e28f, type: 2}
     - target: {fileID: 919132149155446097, guid: f56ed7768bec4d94aa437d9f5cfc33a2, type: 3}
       propertyPath: m_Name
       value: Vloer1Kasteel
@@ -2228,7 +2236,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 12201342adeb1c14cbcd30811e62c151, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c583c74e9bc29594bab5fd0fa5b5a865, type: 2}
+      objectReference: {fileID: 2100000, guid: 49258a3e9b370d74c85c93b51f74e28f, type: 2}
     - target: {fileID: 919132149155446097, guid: 12201342adeb1c14cbcd30811e62c151, type: 3}
       propertyPath: m_Name
       value: Vloer2Kasteel
@@ -2628,7 +2636,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5ab1c5cabd3461b47980133e5b8e8591, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8aebfd7bcfe56b145af19b05778e5ff5, type: 2}
+      objectReference: {fileID: 2100000, guid: 05e1d1493b2da4b49a777a3e3618618f, type: 2}
     - target: {fileID: 919132149155446097, guid: 5ab1c5cabd3461b47980133e5b8e8591, type: 3}
       propertyPath: m_Name
       value: MuurKasteel
@@ -3517,6 +3525,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1106121460}
     m_Modifications:
+    - target: {fileID: 4999840152282747320, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c5605d32a7aaf543affeb82f175521c, type: 2}
     - target: {fileID: 6577985033838494860, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
       propertyPath: givenColor
       value: 5
@@ -3982,6 +3994,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1106121460}
     m_Modifications:
+    - target: {fileID: 4999840152282747320, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c5605d32a7aaf543affeb82f175521c, type: 2}
     - target: {fileID: 6577985033838494860, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
       propertyPath: givenColor
       value: 3
@@ -4886,6 +4902,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1106121460}
     m_Modifications:
+    - target: {fileID: 4999840152282747320, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c5605d32a7aaf543affeb82f175521c, type: 2}
     - target: {fileID: 6577985033838494860, guid: aa18b38df634e51409cd40613ea4f434, type: 3}
       propertyPath: givenColor
       value: 5

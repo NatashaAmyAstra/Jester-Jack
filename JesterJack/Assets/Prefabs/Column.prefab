@@ -139,8 +139,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6d20647dbeeb5e84aa1e3c40839204ea, type: 3}
   spriteFadeInSeconds: 0.5
   columnRenderer: {fileID: 4999840152282747320}
-  columnDefaultMaterial: {fileID: 2100000, guid: af8e07495fb3bf443937547e695691e1, type: 2}
-  columnHighlightMaterial: {fileID: 2100000, guid: 898212267e572ba4e82ede564245b368, type: 2}
+  columnDefaultMaterial: {fileID: 2100000, guid: 4c5605d32a7aaf543affeb82f175521c, type: 2}
+  columnHighlightMaterial: {fileID: 2100000, guid: c1815a018b05b4349824fab82dfb90cb, type: 2}
   raiseSpeedSeconds: 1
   loweredHeight: 0
   raisedHeight: 2.243429
@@ -173,7 +173,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: af8e07495fb3bf443937547e695691e1, type: 2}
+  - {fileID: 2100000, guid: 4c5605d32a7aaf543affeb82f175521c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
