@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 91c51dbcd31553048aaae83664168d8a
   - enabled: 1
+    path: Assets/Scenes/NatashaScene.unity
+    guid: ebf0aa49d595e204b959f735ecb3e79d
+  - enabled: 0
     path: Assets/Scenes/esmee.unity
     guid: 978a3228c61f6b447becf946a287e32e
   m_configObjects: {}
