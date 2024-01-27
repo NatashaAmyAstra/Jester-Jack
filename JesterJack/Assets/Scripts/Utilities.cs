@@ -7,11 +7,20 @@ public class Utilities : MonoBehaviour
 {
     public void GoToGame()
     {
-        //SceneManager.LoadScene("esmee");
+        SceneManager.LoadScene("esmee");
     }
 
     public void QuitGame()
+    { 
+        Application.Quit();
+    }
+
+   /* public void Pauze()
     {
-        //Application.Quit();
+        Time.timeScale = 0;
+    } */
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
