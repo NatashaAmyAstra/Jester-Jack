@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,21 +19,6 @@ public class king : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            animator.SetBool("Laughing", false);
-        }
-        else animator.SetBool("Laughing", true);
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            animator.SetBool("Crying", false);
-        }
-        else animator.SetBool("Crying", true);
-    }
-
     public bool TurnInToy(int box, int spring, int head) {
         bool successState;
         if(box == requestedBox && spring == requestedSpring && head == requestedHead)
@@ -47,6 +33,9 @@ public class king : MonoBehaviour
         }
         Debug.Log(successState);
         resetRoundEvent.Invoke();
+
+        StartCoroutine(AnimateKing(successState));
+
         return successState;
     }
 
@@ -58,5 +47,20 @@ public class king : MonoBehaviour
         requestedBox = box;
         requestedSpring = spring;
         requestedHead = head;
+    }
+
+    private IEnumerator AnimateKing(bool successState) {
+        if(successState == false)
+        {
+            animator.SetBool("Angry", true);
+            yield return new WaitForSeconds(1.7f);
+        }
+
+        animator.SetBool("Angry", false);
+        animator.SetBool("Laughing", true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        animator.SetBool("Laughing", false);
     }
 }
